@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ToDoManager</string>
+    <string name="app_name">ToDo</string>
     <string name="text_two">explore a new topic</string>
     <string name="text_one">Work</string>
     <string name="text_date">24 Jan</string>

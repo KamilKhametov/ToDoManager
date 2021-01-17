@@ -30,46 +30,55 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate ( savedInstanceState );
         setContentView ( R.layout.activity_add_task );
 
-        // Объявление полей
+        // Нахождение полей
         edTask = findViewById ( R.id.edTask );
         edDesc = findViewById ( R.id.edDesc );
         edDate = findViewById ( R.id.edDate );
         btnCreateTask = findViewById ( R.id.btnCreateTask );
         btnCancel = findViewById ( R.id.btnCancel );
 
+        // Получение от Firebase
         firestore = FirebaseFirestore.getInstance ();
 
         // Создание клика на кнопку создания задачи
         btnCreateTask.setOnClickListener ( new View.OnClickListener () {
             @Override
             public void onClick( View v ) {
+                // Получение текста с EditText
                 String task = edTask.getText ().toString ().trim ();
                 String desc = edDesc.getText ().toString ().trim ();
                 String date = edDate.getText ().toString ().trim ();
                 String id = UUID.randomUUID ().toString ();
 
                 saveToFireStore(id,task,desc,date);
-                Intent intent = new Intent (AddTaskActivity.this, MainActivity.class);
-                startActivity ( intent );
+
             }
         } );
 
     }
 
+    // Метод сохранения данных в Firebase
     private void saveToFireStore( String id, String task, String desc, String date ) {
+        // Если все поля заполнены, то
         if(!task.isEmpty () && !desc.isEmpty () && !date.isEmpty ()){
             HashMap<String, Object> map = new HashMap<> ();
+            // Клади данные в HashMap
             map.put ( "id", id );
             map.put ( "task", task );
             map.put ( "desc", desc );
             map.put ( "date", date );
 
+            // Отправляй данные в Firebase
             firestore.collection ( "TaskDocuments" ).document (id).set ( map )
                     .addOnCompleteListener ( new OnCompleteListener<Void> () {
+                        // Методы обработки запроса: успешно или неуспешно
                         @Override
                         public void onComplete( @NonNull Task<Void> task ) {
                             if(task.isSuccessful ()){
                                 Toast.makeText ( AddTaskActivity.this, "Данные сохранились", Toast.LENGTH_SHORT ).show ();
+                                // Возвращение на MainActivity
+                                Intent intent = new Intent (AddTaskActivity.this, MainActivity.class);
+                                startActivity ( intent );
                             }
                         }
                     } ).addOnFailureListener ( new OnFailureListener () {
