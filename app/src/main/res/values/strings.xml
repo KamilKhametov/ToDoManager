@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">ToDoManager</string>
+    <string name="text_two">explore a new topic</string>
+    <string name="text_one">Work</string>
+    <string name="text_date">24 Jan</string>
+    <string name="tasks">Задачи</string>
+
+    <string name="task_title">Задача</string>
+    <string name="desc_title">Описание</string>
+    <string name="date_title">Время выполнения</string>
+
+    <string name="task_hint">Н-р:  Работа над проектом</string>
+    <string name="desc_hint">Н-р:  Оформить текст</string>
+    <string name="date_hint">Н-р:  7:30-8:20</string>
+
+    <string name="text_create">Создать</string>
+    <string name="text_cancel">Отмена</string>
+    <string name="text_update">Обновить</string>
+    <string name="text_delete">Удалить</string>
+
+    <string name="text_empty">Создай свою первую задачу😇</string>
+
+</resources>

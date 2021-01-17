@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.AddTaskActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-275dp"
+                android:background="@drawable/ic_line_add_act_foreground" />
+
+            <TextView
+                android:id="@+id/titleTask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="-250dp"
+                android:layout_marginBottom="0dp"
+                android:text="@string/task_title"
+                android:textColor="@color/texts_title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edTask"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/ed_task_custom"
+                android:ems="10"
+                android:hint="    Н-р:  Работа над проектом"
+                android:inputType="textPersonName|textCapSentences"
+                android:maxLength="43" />
+
+            <TextView
+                android:id="@+id/titleDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="0dp"
+                android:text="@string/desc_title"
+                android:textColor="@color/texts_title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edDesc"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/ed_task_custom"
+                android:ems="10"
+                android:hint="    Н-р:  Оформить текст"
+                android:inputType="textPersonName|textCapSentences"
+                android:maxLength="25" />
+
+            <TextView
+                android:id="@+id/titleDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="0dp"
+                android:text="@string/date_title"
+                android:textColor="@color/texts_title"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edDate"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/ed_task_custom"
+                android:ems="10"
+                android:hint="    Н-р:  7:30-8:20"
+                android:inputType="textPersonName|textCapSentences"
+                android:maxLength="15" />
+
+            <Button
+                android:id="@+id/btnCreateTask"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="70dp"
+                android:background="@drawable/round_corners_linear_main_activity"
+                android:text="@string/text_create"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/text_date_color" />
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="70dp"
+                android:background="@drawable/round_corners_linear_main_activity"
+                android:text="@string/text_cancel"
+                android:textAllCaps="false"
+                app:backgroundTint="@color/btn_cancel" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "510526625259",
+    "project_id": "manager2021-fdb38",
+    "storage_bucket": "manager2021-fdb38.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510526625259:android:9cf8c65a53cac0055bf5ae",
+        "android_client_info": {
+          "package_name": "com.example.todomanager"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510526625259-j371r801nf11j9hqbaf4ihejgu9figkv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYsA1njeM_kfzxun484er1xz7gYiIR0fc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510526625259-j371r801nf11j9hqbaf4ihejgu9figkv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
