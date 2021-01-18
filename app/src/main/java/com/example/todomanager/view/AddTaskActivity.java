@@ -24,6 +24,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private EditText edTask, edDesc, edDate;
     private Button btnCreateTask, btnCancel;
     private FirebaseFirestore firestore;
+    private String taskId, taskTitle, taskDesc, taskDate;
 
     @Override
     protected void onCreate( Bundle savedInstanceState ) {
@@ -40,6 +41,22 @@ public class AddTaskActivity extends AppCompatActivity {
         // Получение от Firebase
         firestore = FirebaseFirestore.getInstance ();
 
+        // Получение старых данных для их обновления
+        Intent intent = getIntent ();
+        if(intent != null){
+            btnCreateTask.setText ( "Обновить" );
+            taskId = intent.getStringExtra ( "taskId" );
+            taskTitle = intent.getStringExtra ( "taskTitle" );
+            taskDesc = intent.getStringExtra ( "taskDesc" );
+            taskDate = intent.getStringExtra ( "taskDate" );
+
+            edTask.setText ( taskTitle );
+            edDesc.setText ( taskDesc );
+            edDate.setText ( taskDate );
+        }else {
+            btnCreateTask.setText ( "Сохранить" );
+        }
+
         // Создание клика на кнопку создания задачи
         btnCreateTask.setOnClickListener ( new View.OnClickListener () {
             @Override
@@ -48,13 +65,44 @@ public class AddTaskActivity extends AppCompatActivity {
                 String task = edTask.getText ().toString ().trim ();
                 String desc = edDesc.getText ().toString ().trim ();
                 String date = edDate.getText ().toString ().trim ();
-                String id = UUID.randomUUID ().toString ();
 
-                saveToFireStore(id,task,desc,date);
+                Bundle bundleTwo = getIntent ().getExtras ();
+                if(bundleTwo != null){
+                    String id = taskId;
+                    updateFireStoreData(id, task, desc, date);
+                }else {
+                    // Старые данные (которые мы создали первый раз)
+                    String id = UUID.randomUUID ().toString ();
+                    saveToFireStore(id,task,desc,date);
+                }
 
             }
         } );
 
+    }
+
+    // Отправка обновленных данных в FireBaseFireStore
+    private void updateFireStoreData( String id, String task, String desc, String date ) {
+        firestore.collection ( "TaskDocuments" ).document (id)
+                .update ("task", task, "desc", desc, "date", date )
+                .addOnCompleteListener ( new OnCompleteListener<Void> () {
+                    @Override
+                    public void onComplete( @NonNull Task<Void> task ) {
+                        if(task.isSuccessful ()){
+                            Toast.makeText ( AddTaskActivity.this, "Данные обновились", Toast.LENGTH_SHORT ).show ();
+                            // Как данные обновились, возвращаемся на MainActivity
+                            Intent intent = new Intent (AddTaskActivity.this, MainActivity.class);
+                            startActivity ( intent );
+                        }else {
+                            Toast.makeText ( AddTaskActivity.this, "Ошибка " + task.getException ().getMessage (), Toast.LENGTH_SHORT ).show ();
+                        }
+                    }
+                } ).addOnFailureListener ( new OnFailureListener () {
+            @Override
+            public void onFailure( @NonNull Exception e ) {
+                Toast.makeText ( AddTaskActivity.this, e.getMessage (), Toast.LENGTH_SHORT ).show ();
+            }
+        } );
     }
 
     // Метод сохранения данных в Firebase

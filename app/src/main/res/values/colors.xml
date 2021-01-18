@@ -7,9 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="linear_color_main_activity">#EB5757</color>
+    <color name="linear_color_main_activity">#FF8577</color>
     <color name="text_two_color">#B3B2B2</color>
-    <color name="text_date_color">#EB5757</color>
+    <color name="text_date_color">#FF8577</color>
     <color name="texts_title">#908F8F</color>
     <color name="btn_cancel">#112D57</color>
     <color name="btn_update">#0099ff</color>

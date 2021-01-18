@@ -2,6 +2,7 @@ package com.example.todomanager.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.todomanager.R;
 import com.example.todomanager.adapter.AdapterMain;
+import com.example.todomanager.itemtouchhelper.TouchHelper;
 import com.example.todomanager.model.ModelMain;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -50,6 +52,10 @@ public class MainActivity extends AppCompatActivity {
         modelMainList = new ArrayList<> ();
         adapterMain = new AdapterMain ( MainActivity.this, modelMainList );
         recyclerView.setAdapter ( adapterMain );
+
+        // Привязка свайпа с RecyclerView
+        ItemTouchHelper touchHelper = new ItemTouchHelper ( new TouchHelper ( adapterMain ) );
+        touchHelper.attachToRecyclerView ( recyclerView );
         showData();
 
 

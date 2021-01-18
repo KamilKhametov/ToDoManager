@@ -1,6 +1,8 @@
 package com.example.todomanager.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.todomanager.R;
 import com.example.todomanager.model.ModelMain;
+import com.example.todomanager.view.AddTaskActivity;
 
 import java.util.List;
 
@@ -23,6 +26,18 @@ public class AdapterMain extends RecyclerView.Adapter<AdapterMain.ViewHolder> {
         this.context=context;
         this.modelMainList=modelMainList;
     }
+
+    // Метод обновления данных
+    public void updateData(int position){
+        ModelMain modelTask = modelMainList.get ( position );
+        Intent intent = new Intent ( context, AddTaskActivity.class );
+        intent.putExtra ( "taskId", modelTask.getId () );
+        intent.putExtra ( "taskTitle", modelTask.getTask () );
+        intent.putExtra ( "taskDesc", modelTask.getDesc () );
+        intent.putExtra ( "taskDate", modelTask.getDate () );
+        context.startActivity ( intent );
+    }
+
 
     @NonNull
     @Override
