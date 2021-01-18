@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Получение данных из FirebaseFireStore
-    private void showData() {
+    public void showData() {
         firestore.collection ( "TaskDocuments" ).get ()
                 .addOnCompleteListener ( new OnCompleteListener<QuerySnapshot> () {
                     @Override

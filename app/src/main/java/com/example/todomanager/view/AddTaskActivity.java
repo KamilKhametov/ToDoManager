@@ -89,7 +89,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     @Override
                     public void onComplete( @NonNull Task<Void> task ) {
                         if(task.isSuccessful ()){
-                            Toast.makeText ( AddTaskActivity.this, "Данные обновились", Toast.LENGTH_SHORT ).show ();
+                            Toast.makeText ( AddTaskActivity.this, "Задача обновилась", Toast.LENGTH_SHORT ).show ();
                             // Как данные обновились, возвращаемся на MainActivity
                             Intent intent = new Intent (AddTaskActivity.this, MainActivity.class);
                             startActivity ( intent );
@@ -123,7 +123,7 @@ public class AddTaskActivity extends AppCompatActivity {
                         @Override
                         public void onComplete( @NonNull Task<Void> task ) {
                             if(task.isSuccessful ()){
-                                Toast.makeText ( AddTaskActivity.this, "Данные сохранились", Toast.LENGTH_SHORT ).show ();
+                                Toast.makeText ( AddTaskActivity.this, "Задача сохранилась", Toast.LENGTH_SHORT ).show ();
                                 // Возвращение на MainActivity
                                 Intent intent = new Intent (AddTaskActivity.this, MainActivity.class);
                                 startActivity ( intent );

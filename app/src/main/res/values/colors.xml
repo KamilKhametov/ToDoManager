@@ -13,4 +13,5 @@
     <color name="texts_title">#908F8F</color>
     <color name="btn_cancel">#112D57</color>
     <color name="btn_update">#0099ff</color>
+    <color name="color_red">#ff0000</color>
 </resources>

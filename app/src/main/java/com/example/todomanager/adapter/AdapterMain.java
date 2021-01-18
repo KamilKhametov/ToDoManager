@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,15 +15,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.todomanager.R;
 import com.example.todomanager.model.ModelMain;
 import com.example.todomanager.view.AddTaskActivity;
+import com.example.todomanager.view.MainActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
 public class AdapterMain extends RecyclerView.Adapter<AdapterMain.ViewHolder> {
 
-    Context context;
-    List<ModelMain> modelMainList;
+    private MainActivity context;
+    private List<ModelMain> modelMainList;
+    private FirebaseFirestore firestore = FirebaseFirestore.getInstance ();
 
-    public AdapterMain( Context context, List<ModelMain> modelMainList ) {
+    public AdapterMain( MainActivity context, List<ModelMain> modelMainList ) {
         this.context=context;
         this.modelMainList=modelMainList;
     }
@@ -36,6 +42,30 @@ public class AdapterMain extends RecyclerView.Adapter<AdapterMain.ViewHolder> {
         intent.putExtra ( "taskDesc", modelTask.getDesc () );
         intent.putExtra ( "taskDate", modelTask.getDate () );
         context.startActivity ( intent );
+    }
+
+    // Метод удаления данных с FirebaseFireStore
+    public void deleteData(int position){
+        ModelMain modelMain = modelMainList.get ( position );
+        firestore.collection ( "TaskDocuments" ).document (modelMain.getId ()).delete ()
+                .addOnCompleteListener ( new OnCompleteListener<Void> () {
+                    @Override
+                    public void onComplete( @NonNull Task<Void> task ) {
+                        if(task.isSuccessful ()){
+                            notifyRemoved ( position );
+                            Toast.makeText ( context, "Задача удалена", Toast.LENGTH_SHORT ).show ();
+                        }else {
+                            Toast.makeText ( context, "Error " + task.getException ().getMessage (), Toast.LENGTH_SHORT ).show ();
+                        }
+                    }
+                } );
+    }
+
+    // Метод удаление значений с modelMainList
+    private void notifyRemoved(int position){
+        modelMainList.remove ( position );
+        notifyItemRemoved ( position );
+        context.showData ();
     }
 
 
